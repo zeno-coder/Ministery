@@ -27,7 +27,10 @@ app.get("/partner", (req, res) => {
 app.get("/media", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "media.html"));
 });
-
+// Ping route
+app.get("/ping", (req, res) => {
+  res.send("Server is alive ✅");
+});
 // Fallback route (for safety)
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
