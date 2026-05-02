@@ -6,6 +6,18 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false  // add this
+  }
+});
+
+// Add this ↓
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("❌ Mailer error:", error.message);
+  } else {
+    console.log("✅ Mailer ready:", process.env.EMAIL_USER);
+  }
 });
 
 async function sendOTP(email, otp) {

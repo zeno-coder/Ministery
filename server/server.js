@@ -173,6 +173,34 @@ app.post("/api/auth/verify-otp", async (req, res) => {
   }
 });
 
+app.post("/api/auth/resend-otp", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const result = await query("SELECT * FROM users WHERE email=$1", [email.toLowerCase()]);
+    const user = result.rows[0];
+
+    if (!user) return res.status(400).json({ message: "User not found" });
+    if (user.is_verified) return res.status(400).json({ message: "Already verified" });
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiry = new Date(Date.now() + 10 * 60 * 1000);
+
+    await query(
+      `UPDATE users SET otp=$1, otp_expiry=$2 WHERE email=$3`,
+      [otp, expiry, email.toLowerCase()]
+    );
+
+    const mailer = require("./utils/mailer");
+    await mailer.sendOTP(email, otp);
+    console.log("Resend OTP sent to:", email);
+
+    res.json({ message: "OTP resent" });
+  } catch (err) {
+    console.error("RESEND OTP ERROR:", err);
+    res.status(500).json({ message: "Failed to resend OTP" });
+  }
+});
+
 const tableFieldsMap = {
   ministries:    ["title", "description", "short_description", "category"],
   projects:      ["title", "description", "short_description", "category", "location", "event_date"],
