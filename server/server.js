@@ -109,12 +109,13 @@ app.post("/api/auth/login", async (req, res) => {
     res.status(500).json({ message: "Server error during login" });
   }
 });
-app.post("/api/auth/signup", async (req, res) => {
+
+
+  app.post("/api/auth/signup", async (req, res) => {
   try {
     const { email, password, phone } = req.body;
     const existing = await query("SELECT * FROM users WHERE email=$1", [email.toLowerCase()]);
     
-    // If user exists AND is already verified, reject
     if (existing.rows.length > 0 && existing.rows[0].is_verified) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -124,32 +125,27 @@ app.post("/api/auth/signup", async (req, res) => {
     const expiry = new Date(Date.now() + 10 * 60 * 1000);
 
     if (existing.rows.length > 0 && !existing.rows[0].is_verified) {
-      // Update the existing unverified user with fresh OTP
       await query(
         `UPDATE users SET password_hash=$1, phone=$2, otp=$3, otp_expiry=$4 WHERE email=$5`,
         [hash, phone, otp, expiry, email.toLowerCase()]
       );
     } else {
-      // Fresh insert
       await query(
         `INSERT INTO users (email, password_hash, phone, otp, otp_expiry, is_verified) VALUES ($1,$2,$3,$4,$5,false)`,
         [email.toLowerCase(), hash, phone, otp, expiry]
       );
     }
-
-try {
-  const mailer = require("./utils/mailer");
-  if (mailer?.sendOTP) {
-    await mailer.sendOTP(email, otp);
-    console.log("OTP email sent to:", email); // ← add this
-  } else {
-    console.log("sendOTP not found. OTP:", otp);
-  }
-} catch (mailErr) {
-  console.error("Email error FULL:", mailErr); // ← change .message to full error
-}
-
     res.json({ message: "OTP sent to email" });
+    setImmediate(async () => {
+      try {
+        const mailer = require("./utils/mailer");
+        await mailer.sendOTP(email, otp);
+        console.log("✅ OTP email sent to:", email);
+      } catch (mailErr) {
+        console.error("❌ Email error:", mailErr.message);
+      }
+    });
+
   } catch (err) {
     console.error("SIGNUP ERROR:", err);
     res.status(500).json({ message: "Server error during signup" });
@@ -190,11 +186,20 @@ app.post("/api/auth/resend-otp", async (req, res) => {
       [otp, expiry, email.toLowerCase()]
     );
 
-    const mailer = require("./utils/mailer");
-    await mailer.sendOTP(email, otp);
-    console.log("Resend OTP sent to:", email);
-
+    // ✅ Respond immediately
     res.json({ message: "OTP resent" });
+
+    // ✅ Send in background
+    setImmediate(async () => {
+      try {
+        const mailer = require("./utils/mailer");
+        await mailer.sendOTP(email, otp);
+        console.log("✅ Resend OTP sent to:", email);
+      } catch (err) {
+        console.error("❌ Resend email error:", err.message);
+      }
+    });
+
   } catch (err) {
     console.error("RESEND OTP ERROR:", err);
     res.status(500).json({ message: "Failed to resend OTP" });
