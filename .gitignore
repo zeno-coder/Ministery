@@ -1,0 +1,18 @@
+# Hide only env files
+server/.env
+server/.env.*
+
+# Dependencies
+node_modules/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+coverage/
+
+# Uploads (keep folder structure)
+server/uploads/*
+!server/uploads/.gitkeep

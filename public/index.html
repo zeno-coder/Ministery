@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Living Christ Global Outreach</title>
+  <link rel="stylesheet" href="./css/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<canvas id="particleCanvas"></canvas>
+
+<div class="page-loader" id="pageLoader">
+  <div class="loader-cross">&#x271D;</div>
+  <div class="loader-text">Living Christ</div>
+</div>
+
+<header class="navbar" id="navbar">
+  <div class="logo">
+    <span class="logo-cross">&#x271D;</span>
+    <div class="logo-text">
+      <span class="logo-main">Living Christ</span>
+      <span class="logo-sub">Global Outreach</span>
+    </div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="mainNav">
+    <a href="#about"      class="nav-link">About</a>
+    <a href="#ministries" class="nav-link">Ministries</a>
+    <a href="#projects"   class="nav-link">Projects</a>
+    <a href="#services"   class="nav-link">Services</a>
+    <a href="#events"     class="nav-link">Events</a>
+    <a href="#donate"     class="nav-link nav-donate">
+      <span>Give Now</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    </a>
+    <a href="login.html" class="nav-link">Login</a>
+<a href="signup.html" class="nav-link">Signup</a>
+  </nav>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="hero-image"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="cross-sm">&#x271D;</span>
+      <span>Est. 2026 &middot; Kerala, India</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="line-1">Transforming</span>
+      <span class="line-2">Lives Through</span>
+      <span class="line-3 gold-text">Christ</span>
+    </h1>
+    <p class="hero-verse">"For I can do all things through Christ who strengthens me." &mdash; Philippians 4:13</p>
+    <p class="hero-tagline">Spiritual growth &middot; Education &middot; Empowerment &middot; Healing &middot; Global Outreach</p>
+    <div class="hero-actions">
+      <!-- ✅ IDs instead of onclick= attributes (CSP fix) -->
+      <button class="btn-primary" id="heroExploreBtn">
+        <span>Explore Ministry</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <button class="btn-ghost" id="heroSupportBtn">Support Us</button>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-row"><span class="stat-num" data-target="10">0</span></div>
+      <span class="stat-label">Ministries</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-row"><span class="stat-num" data-target="500">0</span><span class="stat-plus">+</span></div>
+      <span class="stat-label">Lives Impacted</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-row"><span class="stat-num" data-target="3">0</span></div>
+      <span class="stat-label">Nations Reached</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="vision-strip">
+  <div class="vision-inner">
+    <div class="vision-text">
+      <div class="section-badge">Our Mission</div>
+      <h2 class="section-title">Rooted in Faith,<br><em>Built for Community</em></h2>
+      <p class="vision-body">Living Christ Global Outreach is called to transform lives and communities through the power of Christ — establishing churches, equipping leaders, and providing holistic care spiritually, socially, and economically across Kerala and beyond.</p>
+      <div class="vision-pillars">
+        <div class="pillar"><span class="pillar-icon">&#x1F54A;</span><span>Preach the Gospel</span></div>
+        <div class="pillar"><span class="pillar-icon">&#x1F4D6;</span><span>Equip Leaders</span></div>
+        <div class="pillar"><span class="pillar-icon">&#x1F91D;</span><span>Serve Communities</span></div>
+        <div class="pillar"><span class="pillar-icon">&#x1F30D;</span><span>Global Outreach</span></div>
+      </div>
+    </div>
+    <div class="vision-quote">
+      <div class="quote-card">
+        <div class="quote-cross">&#x271D;</div>
+        <blockquote>"To transform lives and communities through the power of Christ by establishing churches, equipping leaders, and providing holistic care — spiritually, socially, and economically."</blockquote>
+        <cite>&mdash; Ministry Vision Statement</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES -->
+<section id="ministries" class="section-area">
+  <div class="section-header">
+    <div class="section-badge">What We Do</div>
+    <h2 class="section-title">Our Ministries</h2>
+    <p class="section-sub">Ten pillars of service, all rooted in the love of Christ</p>
+  </div>
+  <div id="ministriesGrid" class="cards-grid">
+    <div class="ministry-card" data-delay="0"><div class="mc-icon">&#x1F64F;</div><h3>Spiritual &amp; Evangelical</h3><p>Preaching the Gospel, planting churches, and conducting revival programs locally and internationally.</p></div>
+    <div class="ministry-card" data-delay="1"><div class="mc-icon">&#x1F4DA;</div><h3>Education &amp; Training</h3><p>Bible schools, discipleship programs, scholarships for orphans and underprivileged children.</p></div>
+    <div class="ministry-card" data-delay="2"><div class="mc-icon">&#x1F3D8;</div><h3>Social Development</h3><p>Food, shelter, housing construction, and care centers for the elderly and vulnerable.</p></div>
+    <div class="ministry-card" data-delay="3"><div class="mc-icon">&#x1F3E5;</div><h3>Healthcare &amp; Welfare</h3><p>Hospitals, clinics, palliative care, and community medical camps for the underprivileged.</p></div>
+    <div class="ministry-card" data-delay="4"><div class="mc-icon">&#x1F469;&#x200D;&#x1F4BC;</div><h3>Women &amp; Youth</h3><p>Skill development, entrepreneurship, and leadership for women and youth empowerment.</p></div>
+    <div class="ministry-card" data-delay="5"><div class="mc-icon">&#x1F30D;</div><h3>Humanitarian Relief</h3><p>Disaster relief, rehabilitation, and emergency support for affected communities.</p></div>
+  </div>
+</section>
+
+<!-- SCRIPTURE BANNER -->
+<div class="scripture-banner">
+  <div class="sb-inner">
+    <span class="sb-cross">&#x271D;</span>
+    <p class="sb-text">"For God so loved the world that He gave His only begotten Son, that whoever believes in Him should not perish but have everlasting life." <em>&mdash; John 3:16</em></p>
+    <span class="sb-cross">&#x271D;</span>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects" class="section-area dark-section">
+  <div class="section-header">
+    <div class="section-badge light">Ongoing Work</div>
+    <h2 class="section-title light">Projects</h2>
+    <p class="section-sub light">Tangible change happening on the ground</p>
+  </div>
+  <div id="projectsGrid" class="cards-grid">
+    <div class="project-card" data-delay="0"><div class="pc-num">01</div><h3>Church Planting Initiative</h3><p>Establishing new congregations in unreached villages across Kerala and South India.</p><div class="pc-tag">Spiritual</div></div>
+    <div class="project-card" data-delay="1"><div class="pc-num">02</div><h3>Orphan Education Fund</h3><p>Providing full scholarships and mentorship to orphaned and underprivileged children.</p><div class="pc-tag">Education</div></div>
+    <div class="project-card" data-delay="2"><div class="pc-num">03</div><h3>Community Medical Camps</h3><p>Free health screenings, medicine distribution, and palliative care outreaches.</p><div class="pc-tag">Healthcare</div></div>
+    <div class="project-card" data-delay="3"><div class="pc-num">04</div><h3>Women Livelihood Program</h3><p>Vocational training and micro-enterprise support empowering women toward self-reliance.</p><div class="pc-tag">Empowerment</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section-area">
+  <div class="section-header">
+    <div class="section-badge">How We Serve</div>
+    <h2 class="section-title">Services</h2>
+    <p class="section-sub">Holistic care for every dimension of life</p>
+  </div>
+  <div id="servicesGrid" class="services-list">
+    <div class="service-row" data-delay="0"><div class="sr-num">01</div><div class="sr-content"><h3>Pastoral &amp; Counseling Services</h3><p>Spiritual, emotional, family, and youth counseling available to all who seek peace and direction.</p></div><div class="sr-icon">&#x1F54A;</div></div>
+    <div class="service-row" data-delay="1"><div class="sr-num">02</div><div class="sr-content"><h3>Leadership Development Seminars</h3><p>Conferences and training programs for church leaders, pastors, and community builders.</p></div><div class="sr-icon">&#x1F4D6;</div></div>
+    <div class="service-row" data-delay="2"><div class="sr-num">03</div><div class="sr-content"><h3>Economic Empowerment &amp; Entrepreneurship</h3><p>Financial literacy, small business training, and skills for sustainable livelihoods.</p></div><div class="sr-icon">&#x1F4A1;</div></div>
+    <div class="service-row" data-delay="3"><div class="sr-num">04</div><div class="sr-content"><h3>Drug Abuse &amp; Social Awareness</h3><p>Community programs addressing moral values, family welfare, and substance addiction.</p></div><div class="sr-icon">&#x1F91D;</div></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="section-area dark-section">
+  <div class="section-header">
+    <div class="section-badge light">Calendar</div>
+    <h2 class="section-title light">Upcoming Events</h2>
+    <p class="section-sub light">Join us as we gather, worship, and grow together</p>
+  </div>
+<div id="eventsGrid" class="events-grid"></div>
+</section>
+
+<!-- DONATE -->
+<section id="donate" class="donate-section">
+  <div class="donate-bg"></div>
+  <div class="donate-inner">
+    <div class="donate-text">
+      <div class="section-badge light">Support Us</div>
+      <h2 class="donate-title">Your Gift Changes<br><em>Eternal Lives</em></h2>
+      <p class="donate-body">Every rupee given goes directly toward preaching the Gospel, feeding the hungry, educating children, and healing the sick. Together, we can reach the unreached.</p>
+      <div class="donate-verse">
+        <span class="dv-cross">&#x271D;</span>
+        <p>"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." <em>&mdash; 2 Corinthians 9:7</em></p>
+      </div>
+      <div class="impact-badges">
+        <div class="ib"><span class="ib-amount">&#x20B9;500</span><span class="ib-desc">Feeds a family for a week</span></div>
+        <div class="ib"><span class="ib-amount">&#x20B9;2,000</span><span class="ib-desc">Sponsors a child's education</span></div>
+        <div class="ib"><span class="ib-amount">&#x20B9;5,000</span><span class="ib-desc">Funds a medical camp</span></div>
+      </div>
+    </div>
+    <div class="donate-form-wrap">
+      <div class="form-card">
+        <div class="form-header">
+          <span class="form-cross">&#x271D;</span>
+          <h3>Make a Donation</h3>
+          <p>Secure &middot; Transparent &middot; Impactful</p>
+        </div>
+        <div class="amount-presets">
+          <button class="preset-btn" data-amount="500">&#x20B9;500</button>
+          <button class="preset-btn" data-amount="1000">&#x20B9;1,000</button>
+          <button class="preset-btn active" data-amount="2000">&#x20B9;2,000</button>
+          <button class="preset-btn" data-amount="5000">&#x20B9;5,000</button>
+        </div>
+        <form id="donationForm">
+          <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name" name="donor_name" required />
+          </div>
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="your@email.com" name="donor_email" required />
+          </div>
+          <div class="input-group">
+            <label>Amount (INR)</label>
+            <div class="amount-input-wrap">
+              <span class="rupee">&#x20B9;</span>
+              <input type="number" placeholder="Enter amount" name="amount" id="amountInput" required />
+            </div>
+          </div>
+          <button type="submit" class="donate-btn">
+            <span>Donate with Love</span>
+
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </button>
+          <div id="paypal-wrapper" style="display:none;">
+            <div id="paypal-button-container"></div>
+          </div>        </form>
+        <p class="form-secure">&#x1F512; 100% Secure Payment &middot; Tax Deductible</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="footer-cross">&#x271D;</span>
+        <div><span class="fl-main">Living Christ</span><span class="fl-sub">Global Outreach Ltd</span></div>
+      </div>
+      <p class="footer-tagline">Transforming lives through the power of Christ — spiritually, socially, and economically.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Ministry</h4>
+      <a href="#ministries">Our Ministries</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#events">Events</a>
+    </div>
+    <div class="footer-links">
+      <h4>Get Involved</h4>
+      <a href="#donate">Donate</a>
+      <a href="#about">About Us</a>
+      <a href="mailto:info@livingchrist.org">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>&#x1F4CD; Thrissur, Kerala, India</p>
+      <p>&#x1F4DE; +91 XXXXX XXXXX</p>
+      <p>&#x2709; info@livingchrist.org</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Living Christ Global Outreach Ltd &middot; All Rights Reserved</p>
+    <p class="footer-verse">&#x271D; "His love endures forever" &mdash; Psalm 136</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- Razorpay SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+<!-- App scripts — order matters -->
+<script src="config.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

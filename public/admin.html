@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard &mdash; Living Christ Global Outreach</title>
+  <link rel="stylesheet" href="auth.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+
+<div class="admin-wrap">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-cross">&#x271D;</span>
+      <div class="brand-text">
+        <span class="brand-main">Living Christ</span>
+        <span class="brand-sub">Admin Panel</span>
+      </div>
+    </div>
+
+    <div class="sidebar-label">Content</div>
+    <button class="nav-item" data-section="events">
+      <span class="nav-icon">&#x1F4C5;</span> Events
+    </button>
+    <button class="nav-item" data-section="ministries">
+      <span class="nav-icon">&#x1F54A;</span> Ministries
+    </button>
+    <button class="nav-item" data-section="projects">
+      <span class="nav-icon">&#x1F3D7;</span> Projects
+    </button>
+    <button class="nav-item" data-section="services">
+      <span class="nav-icon">&#x1F4A1;</span> Services
+    </button>
+
+    <div class="sidebar-label">People</div>
+    <button class="nav-item" data-section="users">
+      <span class="nav-icon">&#x1F465;</span> Users
+    </button>
+    <button class="nav-item" data-section="donations">
+      <span class="nav-icon">&#x1F49B;</span> Donations
+    </button>
+    <button class="nav-item" data-section="prayer_requests">
+      <span class="nav-icon">&#x1F64F;</span> Prayer Requests
+      <span class="nav-badge hidden" id="prayerBadge"></span>
+    </button>
+    <button class="nav-item" data-section="contacts">
+      <span class="nav-icon">&#x2709;</span> Contacts
+      <span class="nav-badge hidden" id="contactBadge"></span>
+    </button>
+
+    <div class="sidebar-footer">
+      <a href="index.html" class="back-link">&#x2190; Back to Site</a>
+      <button class="logout-btn" id="logoutBtn">
+        <span>&#x2715;</span> Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="admin-main">
+
+    <div class="admin-topbar">
+      <h1 class="topbar-title" id="sectionTitle">Dashboard</h1>
+      <div class="topbar-right">
+        <span class="admin-badge">&#x271D; Admin</span>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- Stats overview (default) -->
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card">
+          <span class="stat-card-icon">&#x1F4C5;</span>
+          <div class="stat-card-num" id="st-events">—</div>
+          <div class="stat-card-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-icon">&#x1F54A;</span>
+          <div class="stat-card-num" id="st-ministries">—</div>
+          <div class="stat-card-label">Ministries</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-icon">&#x1F3D7;</span>
+          <div class="stat-card-num" id="st-projects">—</div>
+          <div class="stat-card-label">Projects</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-icon">&#x1F49B;</span>
+          <div class="stat-card-num" id="st-donations">—</div>
+          <div class="stat-card-label">Donations</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-icon">&#x1F64F;</span>
+          <div class="stat-card-num" id="st-prayers">—</div>
+          <div class="stat-card-label">New Prayers</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card-icon">&#x2709;</span>
+          <div class="stat-card-num" id="st-contacts">—</div>
+          <div class="stat-card-label">New Contacts</div>
+        </div>
+      </div>
+
+      <!-- Dynamic section content injected here -->
+      <div id="sectionContent"></div>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>
