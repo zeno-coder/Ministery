@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verify OTP - Living Christ</title>
+
+  <link rel="stylesheet" href="auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<span class="bg-cross left">✝</span>
+<span class="bg-cross right">✝</span>
+<canvas id="particles"></canvas>
+
+<div class="auth-page">
+  <div class="auth-card">
+
+  <a href="signup.html" class="auth-back">← Back</a>
+
+  <div class="auth-header">
+    <a href="index.html" class="auth-logo">
+      <span class="auth-cross">✝</span>
+      <div class="auth-brand">
+        <span class="auth-brand-main">Living Christ</span>
+        <span class="auth-brand-sub">Global Outreach</span>
+      </div>
+    </a>
+
+    <h1 class="auth-title">Verify OTP</h1>
+    <p class="auth-subtitle">Enter the 6-digit code sent to your email</p>
+  </div>
+
+  <div class="auth-error" id="authError"></div>
+  <div class="auth-success" id="authSuccess"></div>
+
+  <div class="otp-boxes">
+    <input class="otp-digit" maxlength="1">
+    <input class="otp-digit" maxlength="1">
+    <input class="otp-digit" maxlength="1">
+    <input class="otp-digit" maxlength="1">
+    <input class="otp-digit" maxlength="1">
+    <input class="otp-digit" maxlength="1">
+  </div>
+
+  <button class="btn-submit" id="verifyBtn">
+    <span>Verify</span>
+  </button>
+
+  <div class="resend-row">
+    Didn’t get code?
+    <button class="resend-btn" id="resendBtn">Resend</button>
+  </div>
+
+  <div class="verse-strip">
+    <p>"The Lord is faithful." <em>Psalm 145:13</em></p>
+  </div>
+  </div>
+</div>  
+</div>
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="otp.js"></script>
+
+</body>
+</html>

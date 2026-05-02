@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Living Christ</title>
+
+  <link rel="stylesheet" href="auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<span class="bg-cross left">✝</span>
+<span class="bg-cross right">✝</span>
+<canvas id="particles"></canvas>
+
+<div class="auth-card">
+
+  <div class="auth-header">
+
+    <a href="index.html" class="auth-logo">
+      <span class="auth-cross">✝</span>
+      <div class="auth-brand">
+        <span class="auth-brand-main">Living Christ</span>
+        <span class="auth-brand-sub">Global Outreach</span>
+      </div>
+    </a>
+
+    <h1 class="auth-title">User Dashboard</h1>
+    <p class="auth-subtitle">Welcome back, manage your activity</p>
+  </div>
+
+  <div class="auth-error" id="authError"></div>
+  <div class="auth-success" id="authSuccess"></div>
+
+  <div style="display:flex; flex-direction:column; gap:15px; margin-top:20px;">
+
+    <button class="btn-submit" onclick="donate()">
+      <span>Donate ₹500</span>
+    </button>
+
+    <button class="btn-submit" onclick="viewEvents()">
+      <span>View Events</span>
+    </button>
+
+    <button class="btn-submit" onclick="logout()">
+      <span>Logout</span>
+    </button>
+
+  </div>
+
+  <div class="verse-strip">
+    <p>"Give thanks in all circumstances." <em>1 Thessalonians 5:18</em></p>
+  </div>
+
+</div>
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+  requireAdmin();
+const token = localStorage.getItem("token");
+const role = localStorage.getItem("role");
+
+if (!token) {
+  window.location.href = "login.html";
+}
+
+// admin protection
+if (role !== "admin") {
+  window.location.href = "index.html";
+}
+
+// redirect admin away
+if (payload.role === "admin") {
+  window.location.href = "admin.html";
+}
+
+function requireLogin() {
+  if (!token) {
+    alert("Please login to donate");
+    window.location.href = "login.html";
+    return false;
+  }
+  return true;
+}
+
+const payload = token ? JSON.parse(atob(token.split(".")[1])) : null;
+async function donate() {
+  if (!requireLogin()) return;
+  const res = await post("/donations/order", {
+    donor_name: payload.email,
+    donor_email: payload.email,
+    amount: 500
+  }, token);
+
+  const options = {
+    key: "rzp_test_Sgy06hyFOt3ShY",
+    amount: res.order.amount,
+    currency: "INR",
+    order_id: res.order.id,
+
+    handler: async function (response) {
+      await post("/donations/verify", response, token);
+      alert("Donation Successful!");
+    }
+  };
+
+  new Razorpay(options).open();
+}
+
+function viewEvents() {
+  window.location.href = "events.html";
+}
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

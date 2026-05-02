@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup - Living Christ</title>
+
+  <link rel="stylesheet" href="auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<span class="bg-cross left">✝</span>
+<span class="bg-cross right">✝</span>
+<canvas id="particles"></canvas>
+
+<div class="auth-page">
+  <div class="auth-card">
+
+  <a href="index.html" class="auth-back">← Back to Home</a>
+
+  <div class="auth-header">
+    <a href="index.html" class="auth-logo">
+      <span class="auth-cross">✝</span>
+      <div class="auth-brand">
+        <span class="auth-brand-main">Living Christ</span>
+        <span class="auth-brand-sub">Global Outreach</span>
+      </div>
+    </a>
+
+    <h1 class="auth-title">Join Us</h1>
+    <p class="auth-subtitle">Create your account</p>
+  </div>
+
+  <div class="auth-error" id="authError"></div>
+
+  <div class="input-group">
+    <label>Email</label>
+    <input type="email" id="email" placeholder="your@email.com">
+  </div>
+
+  <div class="input-group">
+    <label>Phone</label>
+    <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX">
+  </div>
+
+  <div class="input-group">
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Create password">
+  </div>
+
+  <button class="btn-submit" id="signupBtn">
+    <span>Create Account</span>
+  </button>
+
+  <div class="auth-divider"><span>or</span></div>
+
+  <div class="auth-footer">
+    <p>Already have an account? <a href="login.html">Sign in</a></p>
+  </div>
+
+  <div class="verse-strip">
+    <p>"Created in Christ Jesus for good works." <em>Ephesians 2:10</em></p>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="signup.js"></script>
+
+</body>
+</html>
