@@ -11,12 +11,10 @@ const crypto = require("crypto");
 const path = require("path");
 const fs = require("fs");
 const Razorpay = require("razorpay");
-
 const app = express();
 const PORT = process.env.PORT || 4000;
 const JWT_SECRET = process.env.JWT_SECRET || "replace-this-secret";
 const clientPath = path.join(__dirname, "../public");
-
 const pool = new Pool(
   process.env.DATABASE_URL
     ? {
@@ -33,11 +31,9 @@ const pool = new Pool(
 );
 
 const query = (text, params) => pool.query(text, params);
-
 pool.connect()
   .then(() => console.log("PostgreSQL Connected"))
   .catch((err) => console.error("DB Connection Failed", err));
-
 let razorpay = null;
 if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
   razorpay = new Razorpay({
@@ -63,30 +59,21 @@ app.use(helmet({
   },
 }));
 app.use(morgan("dev"));
-
 const uploadDir = path.join(__dirname, "uploads");
 fs.mkdirSync(uploadDir, { recursive: true });
-
 const storage = multer.diskStorage({
   destination: (_, __, cb) => cb(null, uploadDir),
   filename: (_, file, cb) => cb(null, Date.now() + "-" + file.originalname),
 });
 const upload = multer({ storage });
-
 app.use("/uploads", express.static(uploadDir));
 app.use(express.static(clientPath));
-
 const auth = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) return res.status(401).json({ message: "No token" });
   try {
     req.user = jwt.verify(token, JWT_SECRET);
-    next();
-  } catch {
-    res.status(401).json({ message: "Invalid token" });
-  }
-};
-
+    next();} catch {res.status(401).json({ message: "Invalid token" });}};
 const adminOnly = (req, res, next) => {
   if (req.user?.role !== "admin")
     return res.status(403).json({ message: "Admin only" });
@@ -115,15 +102,11 @@ app.post("/api/auth/login", async (req, res) => {
   try {
     const { email, password, phone } = req.body;
     const existing = await query("SELECT * FROM users WHERE email=$1", [email.toLowerCase()]);
-    
     if (existing.rows.length > 0 && existing.rows[0].is_verified) {
-      return res.status(400).json({ message: "User already exists" });
-    }
-
+      return res.status(400).json({ message: "User already exists" });}
     const hash = await bcrypt.hash(password, 10);
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiry = new Date(Date.now() + 10 * 60 * 1000);
-
     if (existing.rows.length > 0 && !existing.rows[0].is_verified) {
       await query(
         `UPDATE users SET password_hash=$1, phone=$2, otp=$3, otp_expiry=$4 WHERE email=$5`,
@@ -174,22 +157,15 @@ app.post("/api/auth/resend-otp", async (req, res) => {
     const { email } = req.body;
     const result = await query("SELECT * FROM users WHERE email=$1", [email.toLowerCase()]);
     const user = result.rows[0];
-
     if (!user) return res.status(400).json({ message: "User not found" });
     if (user.is_verified) return res.status(400).json({ message: "Already verified" });
-
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiry = new Date(Date.now() + 10 * 60 * 1000);
-
     await query(
       `UPDATE users SET otp=$1, otp_expiry=$2 WHERE email=$3`,
       [otp, expiry, email.toLowerCase()]
     );
-
-    // ✅ Respond immediately
     res.json({ message: "OTP resent" });
-
-    // ✅ Send in background
     setImmediate(async () => {
       try {
         const mailer = require("./utils/mailer");
@@ -333,7 +309,6 @@ app.get("/api/contact", auth, adminOnly, async (_, res) => {
 app.post("/api/prayer", async (req, res) => {
   try {
     const { name, message } = req.body;
-
     const data = await query(
       `INSERT INTO prayer_requests (name, message, status)
        VALUES ($1,$2,'pending') RETURNING *`,
@@ -426,11 +401,5 @@ app.get("/api/dashboard", auth, async (_, res) => {
 });
 
 app.get("/api/health", (_, res) => res.json({ status: "ok" }));
-
-app.get("*", (_, res) => {
-  res.sendFile(path.join(clientPath, "index.html"));
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+app.get("*", (_, res) => {res.sendFile(path.join(clientPath, "index.html"));});
+app.listen(PORT, () => {console.log(`Server running on http://localhost:${PORT}`);});

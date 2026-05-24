@@ -1,23 +1,17 @@
 const nodemailer = require("nodemailer");
-
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.EMAIL_USER,  
+    pass: process.env.EMAIL_PASS,   
   },
-  tls: {
-    rejectUnauthorized: false  // add this
-  }
 });
 
-// Add this ↓
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("❌ Mailer error:", error.message);
-  } else {
-    console.log("✅ Mailer ready:", process.env.EMAIL_USER);
-  }
+transporter.verify((error) => {
+  if (error) console.error("❌ Mailer error:", error.message);
+  else console.log("✅ Mailer ready");
 });
 
 async function sendOTP(email, otp) {
