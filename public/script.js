@@ -290,10 +290,15 @@ function showToast(msg) {
 
 const paypalContainer = document.getElementById("paypal-button-container");
 
-if (paypalContainer) {
+if (
+  paypalContainer &&
+  typeof paypal !== "undefined"
+) {
+
   paypal.Buttons({
-    
+
     createOrder: async () => {
+
       if (!requireLogin()) return;
 
       const amount =
@@ -318,7 +323,9 @@ if (paypalContainer) {
     },
 
     onApprove: async (data) => {
+
       try {
+
         await fetch(`${API}/donations/verify`, {
           method: "POST",
           headers: {
@@ -330,16 +337,80 @@ if (paypalContainer) {
         });
 
         showToast("✝ Donation Successful! God bless you 🙏");
+
       } catch (err) {
+
         console.error(err);
         showToast("Payment verification failed");
+
       }
+
     },
 
     onError: (err) => {
+
       console.error(err);
       showToast("Payment failed");
+
     }
 
   }).render("#paypal-button-container");
+
 }
+
+  window.addEventListener("DOMContentLoaded", () => {
+  const prayerForm = document.getElementById("prayerForm");
+  if (!prayerForm) {
+    console.log("Prayer form not found");
+    return;
+  }
+  prayerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+      alert("Prayer handler working");
+    console.log("Prayer form submitted");
+    const submitBtn = prayerForm.querySelector("button[type='submit']");
+    const name = document.getElementById("prayerName")?.value.trim();
+    const message = document.getElementById("prayerMessage")?.value.trim();
+    if (!name || !message) {
+      showToast("Please fill all fields");
+      return;
+    }
+
+    try {
+
+      submitBtn.disabled = true;
+      submitBtn.querySelector("span").textContent = "Sending...";
+
+      const res = await fetch("/api/prayer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name,
+          message
+        })
+      });
+
+      const data = await res.json();
+
+      console.log(data);
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed");
+      }
+
+      showToast("🙏 Prayer request submitted successfully");
+
+      prayerForm.reset();
+
+    } catch (err) {
+      console.error("Prayer submit error:", err);
+      showToast("Failed to send prayer request");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.querySelector("span").textContent = "Send Prayer Request";
+    }
+  });
+
+});

@@ -1,13 +1,5 @@
-/* ============================================
-   LIVING CHRIST — ADMIN DASHBOARD
-   admin.js
-   ============================================ */
-
 const token = localStorage.getItem("token");
-
-/* ── AUTH GUARD ── */
 if (!token) { window.location.href = "login.html"; }
-
 let payload;
 try {
   payload = JSON.parse(atob(token.split(".")[1]));
@@ -19,10 +11,6 @@ if (!payload || payload.role !== "admin") {
   alert("Access Denied");
   window.location.href = "index.html";
 }
-
-/* ══════════════════════════════════════════
-   HELPERS
-══════════════════════════════════════════ */
 
 function toast(msg, type = "") {
   const el = document.getElementById("toast");
@@ -56,9 +44,7 @@ function emptyState(container, icon, msg) {
     </div>`;
 }
 
-/* ══════════════════════════════════════════
-   STATS DASHBOARD
-══════════════════════════════════════════ */
+
 async function loadStats() {
   try {
     const d = await api("/api/dashboard");
@@ -68,7 +54,6 @@ async function loadStats() {
     document.getElementById("st-donations").textContent  = d.donations  ?? "—";
     document.getElementById("st-prayers").textContent    = d.prayers    ?? "—";
     document.getElementById("st-contacts").textContent   = d.contacts   ?? "—";
-
     const pBadge = document.getElementById("prayerBadge");
     const cBadge = document.getElementById("contactBadge");
     if (d.prayers  > 0) { pBadge.textContent = d.prayers;  pBadge.classList.remove("hidden"); }
@@ -78,9 +63,6 @@ async function loadStats() {
   }
 }
 
-/* ══════════════════════════════════════════
-   SIDEBAR NAV
-══════════════════════════════════════════ */
 document.querySelectorAll(".nav-item[data-section]").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".nav-item").forEach(b => b.classList.remove("active"));
@@ -94,18 +76,16 @@ document.querySelectorAll(".nav-item[data-section]").forEach(btn => {
   });
 });
 
-document.getElementById("sidebarToggle").addEventListener("click", () => {
+  document.getElementById("sidebarToggle").addEventListener("click", () => {
   document.getElementById("sidebar").classList.toggle("open");
 });
 
-document.getElementById("logoutBtn").addEventListener("click", () => {
+  document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "login.html";
 });
 
-/* ══════════════════════════════════════════
-   SECTION ROUTER
-══════════════════════════════════════════ */
+
 function loadSection(section) {
   const area = document.getElementById("sectionContent");
   if (section === "events") {
@@ -115,9 +95,7 @@ function loadSection(section) {
   }
 }
 
-/* ══════════════════════════════════════════
-   EVENTS SECTION (add + list with edit/delete)
-══════════════════════════════════════════ */
+
 function renderEventsSection(area) {
   area.innerHTML = `
     <div class="section-grid">
@@ -168,17 +146,13 @@ async function loadEvents() {
 
   try {
     const d    = await api("/api/events");
-    // ✅ FIX: API returns a plain array, not { data: [] }
     const rows = Array.isArray(d) ? d : [];
-
     if (countEl) countEl.textContent = rows.length + " event" + (rows.length !== 1 ? "s" : "");
     if (!rows.length) { emptyState(list, "&#x1F4C5;", "No events yet. Add one above."); return; }
-
     list.innerHTML = "";
     rows.forEach(ev => {
       const card = document.createElement("div");
       card.className = "data-row";
-
       const dateStr = ev.event_date
         ? new Date(ev.event_date).toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" })
         : "—";
@@ -263,12 +237,9 @@ async function addEvent() {
   const time    = document.getElementById("ev-time").value;
   const imgFile = document.getElementById("ev-img").files[0];
   const btn     = document.getElementById("addEventBtn");
-
   if (!title || !date) { toast("Title and Date are required", "error"); return; }
-
   btn.disabled = true;
   btn.textContent = "Adding...";
-
   const fd = new FormData();
   fd.append("title",             title);
   fd.append("short_description", short);
@@ -277,7 +248,6 @@ async function addEvent() {
   fd.append("event_date",        date);
   fd.append("time",              time);
   if (imgFile) fd.append("image", imgFile);
-
   try {
     await fetch("/api/events", {
       method:  "POST",
@@ -300,20 +270,14 @@ async function addEvent() {
   }
 }
 
-/* ══════════════════════════════════════════
-   GENERIC SECTION (read-only list + delete)
-   Works for: ministries, projects, services,
-   users, donations, prayer_requests, contacts
-══════════════════════════════════════════ */
-
 const TABLE_CONFIG = {
   ministries:      { title:"title",      sub:"short_description", tags:[] },
   projects:        { title:"title",      sub:"short_description", tags:["category"] },
   services:        { title:"title",      sub:"short_description", tags:[] },
   users:           { title:"email",      sub:"phone",             tags:["role","is_verified"] },
   donations:       { title:"donor_name", sub:"donor_email",       tags:["amount","payment_status"] },
-  prayer_requests: { title:"full_name",  sub:"request_text",      tags:["status"] },
-  contacts:        { title:"full_name",  sub:"message",           tags:["subject","status"] },
+  prayer:          { title:"name",       sub:"message",           tags:["status"] },
+  contact:         { title:"full_name",  sub:"message",           tags:["subject","status"] },
 };
 
 const ADD_FORMS = {
@@ -341,7 +305,7 @@ function renderGenericSection(table, area) {
   const cfg     = TABLE_CONFIG[table] || {};
   const formCfg = ADD_FORMS[table];
   const canAdd  = !!formCfg;
-  const readOnly = ["users","donations","prayer_requests","contacts"].includes(table);
+  const readOnly = ["users","donations","prayer","contact"].includes(table);
 
   let formHTML = "";
   if (canAdd) {
@@ -395,10 +359,13 @@ async function loadGenericTable(table, cfg, readOnly) {
   loading(list);
 
   try {
-    const d    = await api("/api/" + table);
-    // ✅ FIX: API returns a plain array, not { data: [] }
-    const rows = Array.isArray(d) ? d : [];
-
+  const d = await api("/api/" + table);
+  console.log("API RESPONSE:", d);
+  const rows = Array.isArray(d)
+  ? d
+  : Array.isArray(d.data)
+    ? d.data
+    : [];
     if (countEl) countEl.textContent = rows.length + " record" + (rows.length !== 1 ? "s" : "");
     if (!rows.length) { emptyState(list, "&#x1F4C2;", "No records found."); return; }
 
@@ -406,11 +373,10 @@ async function loadGenericTable(table, cfg, readOnly) {
     rows.forEach(row => {
       const card = document.createElement("div");
       card.className = "data-row";
-
       const titleVal = row[cfg.title] || row.title || ("ID " + row.id);
       const subVal   = row[cfg.sub]   || "";
       const tags     = (cfg.tags || []).map(k => {
-        const v = row[k];
+      const v = row[k];
         if (v === null || v === undefined) return "";
         return `<span class="meta-tag ${k === "payment_status" && v === "paid" ? "gold" : ""}">${k}: ${v}</span>`;
       }).join("");
@@ -471,7 +437,7 @@ async function addGeneric(table, formCfg) {
       if (el) el.value = "";
     });
     const cfg      = TABLE_CONFIG[table] || {};
-    const readOnly = ["users","donations","prayer_requests","contacts"].includes(table);
+    const readOnly = ["users","donations","prayer","contact"].includes(table);
     loadGenericTable(table, cfg, readOnly);
     loadStats();
   } catch(e) {
@@ -482,7 +448,4 @@ async function addGeneric(table, formCfg) {
   }
 }
 
-/* ══════════════════════════════════════════
-   INIT
-══════════════════════════════════════════ */
 loadStats();
