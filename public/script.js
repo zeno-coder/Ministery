@@ -209,52 +209,6 @@ loadData("services", "servicesGrid", (item, i) => {
   return d;
 });
 
-loadData("events", "eventsGrid", (item, i) => {
-  let mo = "—", dy = "—";
-
-  try {
-    const dt = new Date(item.event_date || item.date);
-    mo = MN[dt.getMonth()];
-    dy = dt.getDate();
-  } catch (e) {}
-
-  const imageUrl = item.image_url
-    ? item.image_url
-    : "https://images.unsplash.com/photo-1507692049790-de58290a4334"; // fallback
-
-  const d = mkCard("event-card",
-    `
-    <div class="ev-image" style="
-      background-image:url('${imageUrl}');
-      height:160px;
-      background-size:cover;
-      background-position:center;
-      border-radius:10px;
-      margin-bottom:10px;
-    "></div>
-
-    <div class="ev-date">
-      <span class="ev-month">${mo}</span>
-      <span class="ev-day">${dy}</span>
-    </div>
-
-    <div class="ev-info">
-      <h3>${item.title || ""}</h3>
-      <p>${item.short_description || ""}</p>
-
-      <div class="ev-meta">
-        <span>📍 ${item.location || "Kerala"}</span>
-        <span>🕐 ${item.time || "TBA"}</span>
-      </div>
-    </div>
-
-    <div class="ev-arrow">→</div>
-    `
-  );
-
-  d.dataset.delay = i;
-  return d;
-});
 
 setTimeout(() =>
   addReveal(document.querySelectorAll(

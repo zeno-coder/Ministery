@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events &amp; Programmes — Living Christ International Prophetical Ministries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+
+<canvas id="particleCanvas"></canvas>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <a href="index.html" class="logo">
+    <span class="logo-cross">&#x271D;</span>
+    <div class="logo-text">
+      <span class="logo-main">Living Christ</span>
+      <span class="logo-sub">International Prophetical Ministries</span>
+    </div>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="mainNav">
+    <a href="index.html#about"      class="nav-link">About</a>
+    <a href="index.html#ministries" class="nav-link">Ministries</a>
+    <a href="index.html#projects"   class="nav-link">Projects</a>
+    <a href="index.html#services"   class="nav-link">Services</a>
+    <a href="events.html"           class="nav-link active">Events</a>
+    <a href="index.html#donate"     class="nav-link nav-donate">
+      <span>Give Now</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </a>
+    <a href="login.html"  class="nav-link">Login</a>
+    <a href="signup.html" class="nav-link">Signup</a>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="section-badge">Calendar 2026</div>
+  <h1>Events &amp; <span>Gatherings</span></h1>
+  <p>"Join us as we gather, worship, and grow together"</p>
+</section>
+
+<!-- LIVE TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner" id="ticker">
+    <span>ISHS 3rd Graduation Ceremony — Dec 2026</span>
+    <span>Global Pastors &amp; Leaders Summit — Sept 2026</span>
+    <span>Women's Empowerment Conference — Oct 2026</span>
+    <span>Youth Leadership Camp — Aug 2026</span>
+    <span>Medical Outreach Camp — July 2026</span>
+    <span>Prayer &amp; Revival Conference — Nov 2026</span>
+    <span>Evangelism Mission — East Africa — Jan 2027</span>
+    <span>New Intake: Ministry Training — Jan 2027</span>
+    <span>ISHS 3rd Graduation Ceremony — Dec 2026</span>
+    <span>Global Pastors &amp; Leaders Summit — Sept 2026</span>
+    <span>Women's Empowerment Conference — Oct 2026</span>
+    <span>Youth Leadership Camp — Aug 2026</span>
+    <span>Medical Outreach Camp — July 2026</span>
+    <span>Prayer &amp; Revival Conference — Nov 2026</span>
+    <span>Evangelism Mission — East Africa — Jan 2027</span>
+    <span>New Intake: Ministry Training — Jan 2027</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- UPCOMING EVENTS -->
+  <div class="section-label reveal">
+    <span class="sl-badge">Upcoming</span>
+    <h2>Events &amp; Gatherings</h2>
+  </div>
+
+  <div class="carousel-wrap">
+    <div class="events-track" id="eventsTrack">
+      <!-- JS-rendered cards go here -->
+      <div class="carousel-loading" id="carouselLoading">
+        <div class="spinner"></div>
+        <span>Loading Events...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="carousel-nav">
+    <div class="carousel-dots" id="carouselDots"></div>
+    <div class="carousel-btns">
+      <button class="cbtn" id="prevBtn">&#8592;</button>
+      <button class="cbtn" id="nextBtn">&#8594;</button>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin: 60px 0 0;">
+
+  <!-- TRAINING PROGRAMMES -->
+  <div class="section-label reveal">
+    <span class="sl-badge">Enrol Now</span>
+    <h2>Training Programmes</h2>
+  </div>
+
+  <div class="prog-grid" id="progGrid">
+
+    <div class="prog-card reveal">
+      <div class="prog-num">01</div>
+      <div class="prog-title">Certificate in Ministry</div>
+      <div class="prog-dur">3 Months &middot; ISHS</div>
+      <div class="prog-desc">A foundational programme covering the Word of God, the Holy Spirit, personal spiritual growth, and basic ministry skills for every believer.</div>
+      <a class="prog-btn filled" href="#">Apply Now</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">02</div>
+      <div class="prog-title">Ministry Training Programme</div>
+      <div class="prog-dur">6 Months &middot; ISHS</div>
+      <div class="prog-desc">Equipping students with deeper theological understanding, evangelism skills, church leadership, and practical ministry training.</div>
+      <a class="prog-btn filled" href="#">Apply Now</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">03</div>
+      <div class="prog-title">Diploma in Ministry</div>
+      <div class="prog-dur">1 Year &middot; ISHS</div>
+      <div class="prog-desc">A comprehensive diploma covering theology, discipleship, church planting, pastoral care, and community development in ministry.</div>
+      <a class="prog-btn filled" href="#">Apply Now</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">04</div>
+      <div class="prog-title">Advanced Ministry Leadership</div>
+      <div class="prog-dur">2 Years &middot; ISHS</div>
+      <div class="prog-desc">Raising apostolic leaders, senior pastors, and mission directors for cross-cultural ministry and Kingdom expansion across Africa.</div>
+      <a class="prog-btn filled" href="#">Apply Now</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">05</div>
+      <div class="prog-title">Global Pastors &amp; Leaders Training</div>
+      <div class="prog-dur">Intensive &middot; Annual</div>
+      <div class="prog-desc">An international training programme for serving pastors and church leaders, covering leadership strategy, revival, and effective 21st-century ministry.</div>
+      <a class="prog-btn" href="#">Register</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">06</div>
+      <div class="prog-title">Teachers Training Programme</div>
+      <div class="prog-dur">Short Course</div>
+      <div class="prog-desc">Equipping Sunday school teachers, Bible study leaders, and discipleship facilitators with effective teaching methods and biblical content delivery.</div>
+      <a class="prog-btn" href="#">Register</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">07</div>
+      <div class="prog-title">Youth Leadership Training</div>
+      <div class="prog-dur">Short Course</div>
+      <div class="prog-desc">Raising confident, God-fearing youth leaders through Scripture, life skills, entrepreneurship, and mentorship for the next generation of Kingdom builders.</div>
+      <a class="prog-btn" href="#">Register</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">08</div>
+      <div class="prog-title">Women's Ministry Training</div>
+      <div class="prog-dur">Short Course</div>
+      <div class="prog-desc">Empowering women in ministry, leadership, and personal development through biblical teaching, spiritual gifts, and practical service skills.</div>
+      <a class="prog-btn" href="#">Register</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">09</div>
+      <div class="prog-title">Evangelism &amp; Discipleship Training</div>
+      <div class="prog-dur">Short Course</div>
+      <div class="prog-desc">Training soul winners and disciple-makers with effective evangelism tools, follow-up strategies, and community outreach methods for local and cross-cultural settings.</div>
+      <a class="prog-btn" href="#">Register</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">10</div>
+      <div class="prog-title">Women's Vocational Skills Training</div>
+      <div class="prog-dur">Ongoing &middot; Open Intake</div>
+      <div class="prog-desc">Practical training in tailoring, baking, beauty, cosmetology, and handicrafts — empowering women toward sustainable self-reliance and economic freedom.</div>
+      <a class="prog-btn" href="#">Register</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">11</div>
+      <div class="prog-title">Entrepreneurship &amp; Financial Literacy</div>
+      <div class="prog-dur">Short Course</div>
+      <div class="prog-desc">Practical business skills, financial management, small business development, and agricultural skills for sustainable community livelihoods.</div>
+      <a class="prog-btn" href="#">Register</a>
+    </div>
+
+    <div class="prog-card reveal">
+      <div class="prog-num">12</div>
+      <div class="prog-title">Prayer &amp; Revival Conferences</div>
+      <div class="prog-dur">Periodic &middot; All Welcome</div>
+      <div class="prog-desc">Gathering the body of Christ for intense prayer, the move of the Holy Spirit, healing, and spiritual renewal — open to all believers and seekers.</div>
+      <a class="prog-btn" href="#">Register</a>
+    </div>
+
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="footer-cross">&#x271D;</span>
+        <div>
+          <span class="fl-main">Living Christ</span>
+          <span class="fl-sub">Global Outreach Ltd</span>
+        </div>
+      </div>
+      <p class="footer-tagline">Transforming lives through the power of Christ — spiritually, socially, and economically.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Ministry</h4>
+      <a href="/#ministries">Our Ministries</a>
+      <a href="/#projects">Projects</a>
+      <a href="/#services">Services</a>
+      <a href="events.html">Events</a>
+    </div>
+    <div class="footer-links">
+      <h4>Get Involved</h4>
+      <a href="/#donate">Donate</a>
+      <a href="/#about">About Us</a>
+      <a href="mailto:info@lcipm.org">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>&#x1F4CD; Uganda, East Africa</p>
+      <p>&#x1F4DE; +256 756 935 855</p>
+      <p>&#x2709; info@lcipm.org</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Living Christ Global Outreach Ltd &middot; All Rights Reserved</p>
+    <p class="footer-verse">&#x271D; "His love endures forever" &mdash; Psalm 136</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── PARTICLES ── */
+(function initParticles() {
+  const canvas = document.getElementById("particleCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  let W, H;
+  function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+  resize();
+  window.addEventListener("resize", resize);
+  class P {
+    reset() {
+      this.x     = Math.random() * W;
+      this.y     = Math.random() * H;
+      this.r     = Math.random() * 1.5 + 0.3;
+      this.speed = Math.random() * 0.3 + 0.1;
+      this.alpha = Math.random() * 0.4 + 0.1;
+      this.drift = (Math.random() - 0.5) * 0.2;
+    }
+    constructor() { this.reset(); }
+    update() {
+      this.y -= this.speed;
+      this.x += this.drift;
+      this.alpha -= 0.001;
+      if (this.y < -10 || this.alpha <= 0) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,168,76,${this.alpha})`;
+      ctx.fill();
+    }
+  }
+  const particles = Array.from({ length: 60 }, () => new P());
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ── NAVBAR scroll + hamburger ── */
+const navbar    = document.getElementById("navbar");
+const hamburger = document.getElementById("hamburger");
+const mainNav   = document.getElementById("mainNav");
+
+window.addEventListener("scroll", () =>
+  navbar.classList.toggle("scrolled", scrollY > 60)
+);
+
+if (hamburger && mainNav) {
+  hamburger.addEventListener("click", () => {
+    mainNav.classList.toggle("open");
+    const s = hamburger.querySelectorAll("span");
+    if (mainNav.classList.contains("open")) {
+      s[0].style.transform = "rotate(45deg) translate(5px,5px)";
+      s[1].style.opacity   = "0";
+      s[2].style.transform = "rotate(-45deg) translate(5px,-5px)";
+    } else {
+      s.forEach(x => { x.style.transform = ""; x.style.opacity = ""; });
+    }
+  });
+  mainNav.querySelectorAll("a").forEach(a =>
+    a.addEventListener("click", () => {
+      mainNav.classList.remove("open");
+      hamburger.querySelectorAll("span").forEach(s => { s.style.transform = ""; s.style.opacity = ""; });
+    })
+  );
+}
+
+/* ── SCROLL REVEAL ── */
+const revealObs = new IntersectionObserver(entries =>
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("visible"); revealObs.unobserve(e.target); }
+  }), { threshold: 0.1 }
+);
+document.querySelectorAll(".reveal").forEach(el => revealObs.observe(el));
+
+/* ── MONTHS ── */
+const MN = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+
+/* ── STATIC FALLBACK EVENTS (shown when DB has no data yet) ── */
+const STATIC_EVENTS = [
+  { title:"Community Medical Outreach Camp",    short_description:"Free health screenings, medicine distribution, maternal care, and health awareness. All community members welcome.",           location:"Nakawa, Kampala, Uganda",           event_date:"2026-07-12", category:"Healthcare" },
+  { title:"Youth Leadership & Life Skills Camp",short_description:"A 5-day intensive camp for youth covering leadership, career guidance, entrepreneurship, Christian mentorship and life skills.", location:"Resurrection & Healing Center, Nakawa", event_date:"2026-08-09", category:"Youth" },
+  { title:"Global Pastors & Leaders Summit",    short_description:"An international gathering of church leaders, pastors, and ministers for training, fellowship, and Kingdom strategy.",          location:"Kampala, Uganda",                   event_date:"2026-09-20", category:"Spiritual" },
+  { title:"Women's Empowerment Conference",     short_description:"Celebrating and equipping women through skills training, spiritual development, economic empowerment and testimonies.",          location:"Kawempe, Kampala",                  event_date:"2026-10-18", category:"Empowerment" },
+  { title:"Prayer & Revival Conference",        short_description:"Three nights of powerful prayer, worship, and the move of the Holy Spirit. All are welcome to encounter God's presence.",      location:"Resurrection & Healing Center, Nakawa", event_date:"2026-11-07", category:"Revival" },
+  { title:"ISHS 3rd Graduation Ceremony",       short_description:"Celebrating the graduating class of InChrist School of the Holy Spirit — Certificate, Diploma, and Ministry Leadership.",     location:"Resurrection & Healing Center, Nakawa", event_date:"2026-12-06", category:"Graduation" },
+  { title:"New Intake — Ministry Training",     short_description:"New student intake for Certificate, Diploma, and Advanced Ministry Leadership programmes at ISHS. Apply now.",               location:"Nakawa & Kawempe Campuses",          event_date:"2027-01-15", category:"Admissions" },
+];
+
+/* ── CAROUSEL STATE ── */
+let cards   = [];
+let current = 0;
+let autoTimer;
+const VISIBLE = 3;
+
+function buildCard(item, idx) {
+  let mo = "—", dy = "—", yr = "";
+  try {
+    const dt = new Date(item.event_date || item.date);
+    mo = MN[dt.getMonth()];
+    dy = dt.getDate();
+    yr = dt.getFullYear();
+  } catch(e) {}
+
+  const card = document.createElement("div");
+  card.className = "event-card" + (idx === 0 ? " active" : "");
+
+  const imgHtml = item.image_url
+    ? `<img class="ec-image has-img" src="${item.image_url}" alt="${item.title || ''}" loading="lazy">`
+    : "";
+
+  card.innerHTML = `
+    ${imgHtml}
+    <div class="ec-date">
+      <div class="ec-day">${dy}</div>
+      <div class="ec-month-year">
+        <span class="ec-month">${mo}</span>
+        <span class="ec-year">${yr}</span>
+      </div>
+    </div>
+    <div class="ec-title">${item.title || ""}</div>
+    <div class="ec-meta">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      ${item.location || "Uganda"}
+    </div>
+    <div class="ec-desc">${item.short_description || ""}</div>
+    <span class="ec-tag">${item.category || "Event"}</span>
+  `;
+  return card;
+}
+
+function buildDot(i) {
+  const d = document.createElement("div");
+  d.className = "dot" + (i === 0 ? " active" : "");
+  d.addEventListener("click", () => goTo(i));
+  return d;
+}
+
+function goTo(idx) {
+  if (!cards.length) return;
+  cards[current].classList.remove("active");
+  document.querySelectorAll(".dot")[current]?.classList.remove("active");
+  current = ((idx % cards.length) + cards.length) % cards.length;
+  cards[current].classList.add("active");
+  document.querySelectorAll(".dot")[current]?.classList.add("active");
+  const cardW = cards[0].offsetWidth + 20;
+  const maxOffset = Math.max(0, (cards.length - VISIBLE) * cardW);
+  let offset = Math.min(current * cardW, maxOffset);
+  document.getElementById("eventsTrack").style.transform = `translateX(-${offset}px)`;
+}
+
+function startAuto() {
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => goTo(current + 1), 3500);
+}
+
+function renderCarousel(events) {
+  const track    = document.getElementById("eventsTrack");
+  const dotsWrap = document.getElementById("carouselDots");
+  track.innerHTML = "";
+  dotsWrap.innerHTML = "";
+  current = 0;
+  cards   = [];
+
+  events.forEach((ev, i) => {
+    const card = buildCard(ev, i);
+    card.addEventListener("click", () => { goTo(i); clearInterval(autoTimer); startAuto(); });
+    track.appendChild(card);
+    dotsWrap.appendChild(buildDot(i));
+    cards.push(card);
+  });
+
+  startAuto();
+
+  // attach nav buttons
+  document.getElementById("prevBtn").onclick = () => { goTo(current - 1); clearInterval(autoTimer); startAuto(); };
+  document.getElementById("nextBtn").onclick = () => { goTo(current + 1); clearInterval(autoTimer); startAuto(); };
+}
+
+/* ── FETCH EVENTS FROM API, FALLBACK TO STATIC ── */
+async function loadEvents() {
+  try {
+    const res  = await fetch("/api/events");
+    const json = await res.json();
+    const data = Array.isArray(json) ? json : (json.data || []);
+    renderCarousel(data.length ? data : STATIC_EVENTS);
+  } catch(e) {
+    renderCarousel(STATIC_EVENTS);
+  }
+}
+
+loadEvents();
+
+/* ── REVEAL prog cards ── */
+setTimeout(() => {
+  document.querySelectorAll(".prog-card").forEach(el => revealObs.observe(el));
+}, 100);
+</script>
+</body>
+</html>
