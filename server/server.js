@@ -47,14 +47,14 @@ app.use(express.json());
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://checkout.razorpay.com", "https://fonts.googleapis.com"],
+      defaultSrc:    ["'self'"],
+      scriptSrc:     ["'self'", "'unsafe-inline'", "https://checkout.razorpay.com", "https://www.paypal.com", "https://fonts.googleapis.com"],
       scriptSrcAttr: ["'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-      fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https://images.unsplash.com"],
-      connectSrc: ["'self'","http://localhost:4000","https://livingchrist.onrender.com"],
-      frameSrc: ["https://api.razorpay.com"],
+      styleSrc:      ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc:       ["'self'", "https://fonts.gstatic.com"],
+      imgSrc:        ["'self'", "data:", "https://images.unsplash.com", "https://res.cloudinary.com"],
+      connectSrc:    ["'self'", "http://localhost:4000", "https://livingchrist.onrender.com"],
+      frameSrc:      ["https://api.razorpay.com", "https://www.paypal.com"],
     },
   },
 }));
@@ -401,5 +401,6 @@ app.get("/api/dashboard", auth, async (_, res) => {
 });
 
 app.get("/api/health", (_, res) => res.json({ status: "ok" }));
+app.get("/events.html", (_, res) => {res.sendFile(path.join(clientPath, "events.html"));});
 app.get("*", (_, res) => {res.sendFile(path.join(clientPath, "index.html"));});
 app.listen(PORT, () => {console.log(`Server running on http://localhost:${PORT}`);});
