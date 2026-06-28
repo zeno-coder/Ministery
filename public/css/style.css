@@ -992,3 +992,397 @@
   .prog-grid { grid-template-columns: 1fr; }
   .event-card { min-width: 280px; }
 }
+
+
+/* ============================================================
+   MINISTRIES — EXPANDED CARDS
+   Append these rules to css/style.css
+   ============================================================ */
+
+.ministries-section { background: var(--night); }
+
+.ministries-expanded-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.min-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.min-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.min-card:hover {
+  background: rgba(201,168,76,0.05);
+  border-color: var(--border);
+  transform: translateY(-5px);
+  box-shadow: var(--glow), var(--shadow);
+}
+
+.min-card:hover::before { transform: scaleX(1); }
+
+.min-card-num {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.min-card:hover .min-card-num { color: rgba(201,168,76,0.22); }
+
+.min-card-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.min-card-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.min-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-light);
+  margin: 20px 0 16px;
+}
+
+.min-subgroup {
+  margin-bottom: 16px;
+}
+
+.min-sub-label {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.min-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.min-list li {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-muted);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.min-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  opacity: 0.6;
+  font-size: 10px;
+  top: 2px;
+}
+
+.min-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.min-btn {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+  border: none;
+}
+
+.min-btn-primary {
+  background: var(--gold);
+  color: var(--night);
+  flex: 1;
+}
+
+.min-btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.35);
+}
+
+.min-btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold) !important;
+  flex: 1;
+}
+
+.min-btn-outline:hover {
+  background: var(--gold-dim);
+  transform: translateY(-1px);
+}
+
+.min-btn-full {
+  background: var(--gold);
+  color: var(--night);
+  width: 100%;
+}
+
+.min-btn-full:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.35);
+}
+
+@media (max-width: 1100px) {
+  .ministries-expanded-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .ministries-expanded-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   PROJECTS — EXPANDED CARDS
+   ============================================================ */
+
+.projects-section { background: var(--deep); }
+
+.projects-expanded-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Last card (07) spans full width if alone on a row */
+.proj-card-center {
+  grid-column: 2 / 3;
+}
+
+.proj-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px 28px;
+  transition: all 0.4s var(--ease);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.proj-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.proj-card:hover {
+  background: rgba(201,168,76,0.05);
+  border-color: var(--border);
+  transform: translateY(-5px);
+  box-shadow: var(--glow), var(--shadow);
+}
+
+.proj-card:hover::before { transform: scaleX(1); }
+
+.proj-num {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 14px;
+  transition: color 0.3s ease;
+}
+
+.proj-card:hover .proj-num { color: rgba(201,168,76,0.22); }
+
+.proj-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.proj-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.proj-tag {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-top: auto;
+  width: fit-content;
+}
+
+@media (max-width: 1100px) {
+  .projects-expanded-grid { grid-template-columns: repeat(2, 1fr); }
+  .proj-card-center { grid-column: auto; }
+}
+
+@media (max-width: 700px) {
+  .projects-expanded-grid { grid-template-columns: 1fr; }
+  .proj-card-center { grid-column: auto; }
+}
+
+
+/* ============================================================
+   SERVICES — EXPANDED LIST
+   ============================================================ */
+
+.services-section { background: var(--night); }
+
+.services-expanded-list {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border-light);
+}
+
+.svc-row {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 20px;
+  border-bottom: 1px solid var(--border-light);
+  transition: all 0.3s var(--ease);
+  border-radius: var(--radius);
+}
+
+.svc-row:hover {
+  background: rgba(201,168,76,0.04);
+  border-color: transparent;
+  padding-left: 28px;
+  border-radius: var(--radius-lg);
+}
+
+.svc-num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  opacity: 0.55;
+}
+
+.svc-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.svc-desc {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.svc-btn {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s var(--ease);
+  flex-shrink: 0;
+}
+
+.svc-btn:hover {
+  background: var(--gold);
+  color: var(--night);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.3);
+}
+
+@media (max-width: 768px) {
+  .svc-row {
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+  }
+  .svc-btn {
+    grid-column: 2 / 3;
+    justify-self: start;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 500px) {
+  .svc-title { font-size: 16px; }
+}
