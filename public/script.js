@@ -260,10 +260,10 @@ function buildMinistryCard(item, index) {
   const ctas = Array.isArray(item.cta) ? item.cta : ["Contact Us"];
   let btnHTML = "";
   if (ctas.length === 1) {
-    btnHTML = `<button class="min-btn min-btn-full" onclick="scrollToSection('prayer')">${ctas[0]}</button>`;
+    btnHTML = `<button class="min-btn min-btn-full" onclick="window.location.href='/contact/'">${ctas[0]}</button>`;
   } else {
     btnHTML = ctas.map((label, i) =>
-      `<button class="min-btn ${i === 0 ? "min-btn-primary" : "min-btn-outline"}" onclick="scrollToSection('${i === 0 ? "prayer" : "about"}')">${label}</button>`
+      `<button class="min-btn ${i === 0 ? "min-btn-primary" : "min-btn-outline"}" onclick="window.location.href='${i === 0 ? "/contact/" : "/contact/"}'">  ${label}</button>`
     ).join("");
   }
 
@@ -312,7 +312,8 @@ function buildServiceRow(item, index) {
       <h3 class="svc-title">${title}</h3>
       <p class="svc-desc">${desc}</p>
     </div>
-    <button class="svc-btn" onclick="scrollToSection('prayer')">${cta}</button>`;
+    <button class="svc-btn" onclick="window.location.href='/contact/'">${cta}</button>
+`;
   return row;
 }
 

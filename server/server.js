@@ -427,6 +427,12 @@ app.get("/api/dashboard", auth, async (_, res) => {
 
 app.get("/api/health", (_, res) => res.json({ status: "ok" }));
 app.get("/events.html", (_, res) => res.sendFile(path.join(clientPath, "events.html")));
+
+app.get("/contact",         (_, res) => res.sendFile(path.join(clientPath, "contact/index.html")));
+app.get("/contact/",        (_, res) => res.sendFile(path.join(clientPath, "contact/index.html")));
+app.get("/contact/script.js", (_, res) => res.sendFile(path.join(clientPath, "contact/script.js")));
+app.get("/contact/style.css", (_, res) => res.sendFile(path.join(clientPath, "contact/style.css")));
+
 app.get("*", (_, res) => res.sendFile(path.join(clientPath, "index.html")));
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
