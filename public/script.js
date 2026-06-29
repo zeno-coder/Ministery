@@ -302,7 +302,6 @@ function buildServiceRow(item, index) {
   const title = item.title || "";
   const desc  = item.short_description || item.description || "";
   const cta   = item.cta || "Contact Us";
-
   const row     = document.createElement("div");
   row.className = "svc-row";
   row.dataset.delay = index;
@@ -317,9 +316,6 @@ function buildServiceRow(item, index) {
   return row;
 }
 
-/* ========================================================
-   LOAD FROM API → FALLBACK TO STATIC
-   ======================================================== */
 
 async function loadSection(endpoint, containerId, buildFn, staticData) {
   const container = document.getElementById(containerId);
@@ -451,3 +447,47 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+(function initGalleryTeaser() {
+  const teaserObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      if (el.classList.contains("gt-text") || el.classList.contains("gt-mosaic")) {
+        el.classList.add("gt-visible");
+      }
+
+      teaserObs.unobserve(el);
+    });
+  }, { threshold: 0.18 });
+
+  document.querySelectorAll(".gt-text, .gt-mosaic").forEach(el => teaserObs.observe(el));
+  const workObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+
+      const items = e.target.querySelectorAll(".gt-work-item");
+      items.forEach((item, i) => {
+        setTimeout(() => item.classList.add("gt-visible"), i * 100);
+      });
+
+      workObs.unobserve(e.target);
+    });
+  }, { threshold: 0.2 });
+
+  const worksList = document.querySelector(".gt-works-list");
+  if (worksList) workObs.observe(worksList);
+  document.querySelectorAll(".gt-tile").forEach(tile => {
+    tile.style.cursor = "pointer";
+    tile.addEventListener("click", () => {
+      window.location.href = "gallery/index.html";
+    });
+    tile.setAttribute("tabindex", "0");
+    tile.setAttribute("role", "button");
+    tile.setAttribute("aria-label", `View ${tile.dataset.category || ""} gallery`);
+    tile.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") window.location.href = "gallery/index.html";
+    });
+  });
+
+})();

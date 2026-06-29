@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery — Living Christ Global Outreach</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<canvas id="particleCanvas"></canvas>
+
+<div class="page-loader" id="pageLoader">
+  <div class="loader-cross">&#x271D;</div>
+  <div class="loader-text">Living Christ</div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="logo">
+    <span class="logo-cross">&#x271D;</span>
+    <div class="logo-text">
+      <span class="logo-main">Living Christ</span>
+      <span class="logo-sub">International Prophetical Ministries</span>
+    </div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="mainNav">
+    <a href="../index.html#about"      class="nav-link">About</a>
+    <a href="../index.html#ministries" class="nav-link">Ministries</a>
+    <a href="../index.html#projects"   class="nav-link">Projects</a>
+    <a href="../index.html#services"   class="nav-link">Services</a>
+    <a href="../events.html"           class="nav-link">Events</a>
+    <a href="index.html"               class="nav-link active-page">Gallery</a>
+    <a href="../index.html#donate"     class="nav-link nav-donate">
+      <span>Give Now</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    </a>
+    <a href="/contact/" class="nav-link">Contact</a>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<section class="gallery-hero">
+  <div class="gallery-hero-bg">
+    <div class="gallery-hero-overlay"></div>
+    <div class="gallery-hero-image"></div>
+  </div>
+  <div class="gallery-hero-content">
+    <div class="hero-badge">
+      <span class="cross-sm">&#x271D;</span>
+      <span>Witness &middot; Document &middot; Remember</span>
+    </div>
+    <h1 class="gallery-hero-title">
+      <span class="line-1">Stories Told</span>
+      <span class="line-2 gold-text">In Light</span>
+    </h1>
+    <p class="gallery-hero-sub">Every image a testament — captured moments of grace across Uganda and beyond</p>
+  </div>
+  <div class="gallery-hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Explore</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>Outreach Missions</span>
+    <span>Graduation Ceremonies</span>
+    <span>Food Distribution</span>
+    <span>Medical Camps</span>
+    <span>Leadership Training</span>
+    <span>Church Planting</span>
+    <span>Women Empowerment</span>
+    <span>Children's Ministry</span>
+    <span>Outreach Missions</span>
+    <span>Graduation Ceremonies</span>
+    <span>Food Distribution</span>
+    <span>Medical Camps</span>
+    <span>Leadership Training</span>
+    <span>Church Planting</span>
+    <span>Women Empowerment</span>
+    <span>Children's Ministry</span>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<section class="filter-section">
+  <div class="filter-inner">
+    <div class="filter-label">
+      <span class="cross-sm">&#x271D;</span>
+      <span>Filter by Ministry</span>
+    </div>
+    <div class="filter-pills" id="filterPills">
+      <button class="pill active" data-filter="all">All</button>
+      <button class="pill" data-filter="outreach">Outreach</button>
+      <button class="pill" data-filter="graduation">Graduation</button>
+      <button class="pill" data-filter="medical">Medical</button>
+      <button class="pill" data-filter="education">Education</button>
+      <button class="pill" data-filter="women">Women &amp; Youth</button>
+      <button class="pill" data-filter="community">Community</button>
+    </div>
+    <div class="gallery-count" id="galleryCount">
+      <span id="countNum">0</span> <span>moments captured</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED MOMENT — 3D CARD -->
+<section class="featured-section">
+  <div class="featured-inner">
+    <div class="featured-label">
+      <div class="section-badge">Featured Moment</div>
+    </div>
+    <div class="featured-scene" id="featuredScene">
+      <div class="featured-card" id="featuredCard">
+        <div class="featured-card-inner">
+          <div class="featured-card-front">
+            <img src="/assets/images/grads.jpeg" alt="" id="featuredImg" class="featured-img" />
+            <div class="featured-overlay">
+              <div class="featured-tag" id="featuredTag">Outreach</div>
+              <h2 class="featured-title" id="featuredTitle">Graduation Ceremony — Uganda</h2>
+              <p class="featured-caption" id="featuredCaption">Ministry training graduates receiving certificates of completion</p>
+            </div>
+          </div>
+        </div>
+        <div class="featured-glow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MASONRY GALLERY GRID -->
+<section class="gallery-section" id="gallerySection">
+  <div class="gallery-inner">
+
+    <!-- Stats strip -->
+    <div class="gallery-stats-strip">
+      <div class="gstat">
+        <span class="gstat-num">500+</span>
+        <span class="gstat-label">Lives Impacted</span>
+      </div>
+      <div class="gstat-divider"></div>
+      <div class="gstat">
+        <span class="gstat-num">3</span>
+        <span class="gstat-label">Nations Reached</span>
+      </div>
+      <div class="gstat-divider"></div>
+      <div class="gstat">
+        <span class="gstat-num">10</span>
+        <span class="gstat-label">Ministries Active</span>
+      </div>
+      <div class="gstat-divider"></div>
+      <div class="gstat">
+        <span class="gstat-num">2+</span>
+        <span class="gstat-label">Years Serving Africa</span>
+      </div>
+    </div>
+
+    <!-- Masonry grid container -->
+    <div class="masonry-grid" id="masonryGrid">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Load More -->
+    <div class="load-more-wrap" id="loadMoreWrap">
+      <button class="load-more-btn" id="loadMoreBtn">
+        <span>&#x271D;</span>
+        <span>Load More Moments</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCRIPTURE BANNER -->
+<div class="scripture-banner">
+  <div class="sb-inner">
+    <span class="sb-cross">&#x271D;</span>
+    <p class="sb-text">"Go into all the world and preach the gospel to all creation." <em>&mdash; Mark 16:15</em></p>
+    <span class="sb-cross">&#x271D;</span>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" id="lbClose" aria-label="Close">&#x2715;</button>
+  <button class="lb-prev"  id="lbPrev"  aria-label="Previous">&#x2039;</button>
+  <button class="lb-next"  id="lbNext"  aria-label="Next">&#x203A;</button>
+
+  <div class="lb-scene">
+    <div class="lb-card" id="lbCard">
+      <div class="lb-img-wrap">
+        <img src="" alt="" id="lbImg" class="lb-img" />
+        <div class="lb-img-loader" id="lbLoader">
+          <div class="lb-spinner"></div>
+        </div>
+      </div>
+      <div class="lb-info">
+        <div class="lb-tag" id="lbTag"></div>
+        <h3 class="lb-title" id="lbTitle"></h3>
+        <p class="lb-caption" id="lbCaption"></p>
+        <div class="lb-meta">
+          <span id="lbLocation">&#x1F4CD; Uganda, East Africa</span>
+          <span class="lb-counter" id="lbCounter">1 / 1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lb-backdrop" id="lbBackdrop"></div>
+</div>
+
+<!-- UPLOAD SECTION (for admin/public upload) -->
+<section class="upload-section" id="uploadSection">
+  <div class="upload-inner">
+    <div class="section-header">
+      <div class="section-badge">Contribute</div>
+      <h2 class="section-title">Share A Moment</h2>
+      <p class="section-sub">Upload photos from events, outreaches, and ministry activities to grow our gallery</p>
+    </div>
+    <div class="upload-card" id="uploadCard">
+      <div class="upload-drop-zone" id="dropZone">
+        <div class="upload-icon">&#x271D;</div>
+        <p class="upload-text">Drag &amp; drop images here</p>
+        <p class="upload-hint">or</p>
+        <label class="upload-btn-label" for="fileInput">
+          <span>Choose Images</span>
+          <input type="file" id="fileInput" accept="image/*" multiple hidden />
+        </label>
+        <p class="upload-formats">JPG, PNG, WEBP &mdash; Max 10MB each</p>
+      </div>
+      <div class="upload-preview" id="uploadPreview" style="display:none;">
+        <div class="preview-grid" id="previewGrid"></div>
+        <div class="upload-form-fields">
+          <div class="input-group">
+            <label>Caption / Description</label>
+            <input type="text" id="uploadCaption" placeholder="Describe what's happening..." />
+          </div>
+          <div class="input-group">
+            <label>Ministry Category</label>
+            <select id="uploadCategory">
+              <option value="outreach">Outreach</option>
+              <option value="graduation">Graduation</option>
+              <option value="medical">Medical</option>
+              <option value="education">Education</option>
+              <option value="women">Women &amp; Youth</option>
+              <option value="community">Community</option>
+            </select>
+          </div>
+          <div class="upload-actions">
+            <button class="upload-cancel-btn" id="uploadCancelBtn">Cancel</button>
+            <button class="upload-submit-btn" id="uploadSubmitBtn">
+              <span>Upload to Gallery</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="footer-cross">&#x271D;</span>
+        <div><span class="fl-main">Living Christ</span><span class="fl-sub">Global Outreach Ltd</span></div>
+      </div>
+      <p class="footer-tagline">Transforming lives through the power of Christ — spiritually, socially, and economically.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Ministry</h4>
+      <a href="../index.html#ministries">Our Ministries</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#services">Services</a>
+      <a href="../events.html">Events</a>
+    </div>
+    <div class="footer-links">
+      <h4>Get Involved</h4>
+      <a href="../index.html#donate">Donate</a>
+      <a href="../index.html#about">About Us</a>
+      <a href="mailto:info@lcipm.org">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p>&#x1F4CD; Uganda, East Africa</p>
+      <p>&#x1F4DE; +256 756 935 855</p>
+      <p>&#x2709; info@lcipm.org</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Living Christ Global Outreach Ltd &middot; All Rights Reserved</p>
+    <p class="footer-verse">&#x271D; "His love endures forever" &mdash; Psalm 136</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="../script.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
